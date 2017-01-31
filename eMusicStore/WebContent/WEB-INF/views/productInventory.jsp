@@ -24,7 +24,9 @@
             </thread>
             <c:forEach items="${productList}" var="product">
                 <tr>
-                    <td><img src=""></td>
+                    <td>
+                    	<img src="<c:url value="/resources/images/${product.productId}.png"/>" width="100" height="100"/>
+                    </td>
                     <td>${product.productName} </td>
                     <td>${product.productCategory} </td>
                     <td>${product.productDescription}</td>
@@ -37,13 +39,19 @@
                         >
                         <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
+                        <a href="<spring:url value="/admin/productInventory/deleteProduct/${product.productId}" />"
+                        >
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-    </div>
-    <h3>
+        <h3>
     	<a href=" <c:url value="/admin/productInventory/addProduct"/> " class="btn btn-primary btn-lg active"> Add Product</a>
     </h3>
     <%@include file="/WEB-INF/views/template/footer.jsp" %>
+    </div>
+    
+</div>    
 

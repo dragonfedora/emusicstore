@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by Madhuri on 03-09-2016.
@@ -13,8 +15,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Product {
 	
-	@GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "BINARY(16)")
 	@Id
 	private String productId;
@@ -34,8 +36,18 @@ public class Product {
     private String productCondition;
     private String productStatus;
     private int unitInStock;
+    @Transient
+    private MultipartFile productImage;
 
-    public String getProductName() {
+    public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+
+	public String getProductName() {
         return productName;
     }
 

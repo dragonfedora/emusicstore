@@ -6,13 +6,13 @@
     <div class="container">
         <div class="page-header">
             <h1>All Product</h1>
-            <p1 class="lead">Checkout all the awesome products</p1>
+            <p class="lead">Checkout all the awesome products</p>
         </div>
         <table class="table table-striped table-hover">
             <caption><h2>List of products</h2></caption>
             <thread>
                 <tr>
-                    <th>Prouct Image</th>
+                    <th>Product Image</th>
                     <th>productName</th>
                     <th>productCategory</th>
                     <th>productDescription</th>
@@ -24,7 +24,9 @@
             </thread>
             <c:forEach items="${productList}" var="product">
                 <tr>
-                    <td><img src=""></td>
+                    <td>
+                    	<img src="<c:url value="C:\Users\DRAGON\Downloads\apache-tomcat-8.5.9\apache-tomcat-8.5.9\images\${product.productImage}"/>"/>
+                    </td>
                     <td>${product.productName} </td>
                     <td>${product.productCategory} </td>
                     <td>${product.productDescription}</td>
@@ -41,6 +43,8 @@
                 </tr>
             </c:forEach>
         </table>
+         <%@include file="/WEB-INF/views/template/footer.jsp" %>
     </div>
-    <%@include file="/WEB-INF/views/template/footer.jsp" %>
+  </div>
+   
 

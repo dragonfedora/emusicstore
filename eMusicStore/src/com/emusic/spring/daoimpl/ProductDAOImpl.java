@@ -45,8 +45,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void deletePrductById(String id) {
-		// TODO Auto-generated method stub
-		
+		Session session = SessionFactory.getCurrentSession();
+		session.delete(getProduct(id));
+		session.flush();
 	}
 
 }

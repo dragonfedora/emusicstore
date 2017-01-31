@@ -11,5 +11,8 @@
 		<h3>
 		<a href="<c:url value="/admin/productInventory" />"> Product Inventory </a>
 		</h3>
+		
 	</div>
 	<%@include file="/WEB-INF/views/template/footer.jsp"%>
+	</div>
+	
