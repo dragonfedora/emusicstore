@@ -1,9 +1,13 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="/WEB-INF/views/template/header.jsp" %>
+<script>
+var ctx = "${pageContext.request.contextPath}";
+var editURL = ctx + "/admin/productInventory/editProduct/";
+</script>
 
 <div class="container-wrapper">
-    <div class="container">
+    <div class="container" id="mainDiv">
         <div class="page-header">
             <h1>Product Inventory Page</h1>
             <p1 class="lead">You can view Product here</p1>
@@ -43,6 +47,9 @@
                         >
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
+                        
+                        <span class="glyphicon glyphicon-pencil" data-id="${product.productId}" aria-hidden="true"></span>
+                                                
                     </td>
                 </tr>
             </c:forEach>
@@ -55,3 +62,14 @@
     
 </div>    
 
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".glyphicon-pencil").click(this,function(){
+	    	alert(ctx);
+	    	$.ajax({url: ctx + "/admin/productInventory/editProduct/"+ $(this).data("id"), success: function(result){
+	            $("#mainDiv").html(result);
+	            $("#product").attr("action", editURL);
+	        }});
+	    });
+	});
+</script>

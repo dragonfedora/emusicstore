@@ -12,9 +12,13 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Carousel Template for Bootstrap</title>
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" ></script>
+	
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css" ></c:url>" rel="stylesheet">
+    <!-- Main CSS -->
+    <link href="<c:url value="/resources/css/main.css" ></c:url>" rel="stylesheet">
 
 </head>
 <!-- NAVBAR

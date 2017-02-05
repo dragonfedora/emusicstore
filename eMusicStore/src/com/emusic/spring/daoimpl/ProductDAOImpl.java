@@ -30,7 +30,7 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void addProduct(Product product) {
 		Session session = SessionFactory.getCurrentSession();
-		session.saveOrUpdate(product);
+		session.save(product);
 		session.flush();
 	}
 
@@ -48,6 +48,14 @@ public class ProductDAOImpl implements ProductDAO {
 		Session session = SessionFactory.getCurrentSession();
 		session.delete(getProduct(id));
 		session.flush();
+	}
+
+	@Override
+	public void editProduct(Product product) {
+		Session session = SessionFactory.getCurrentSession();
+		session.saveOrUpdate(product);
+		session.flush();
+		
 	}
 
 }

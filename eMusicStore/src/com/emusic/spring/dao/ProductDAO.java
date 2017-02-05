@@ -10,5 +10,6 @@ public interface ProductDAO {
 	public void addProduct(Product product);
 	public List<Product> getProductList();
 	public void deletePrductById(String id);
+	public void editProduct(Product product);
 
 }

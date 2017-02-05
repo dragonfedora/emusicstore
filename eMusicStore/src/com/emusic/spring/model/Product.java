@@ -1,19 +1,29 @@
 package com.emusic.spring.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by Madhuri on 03-09-2016.
  */
 @Entity
-public class Product {
+public class Product  implements Serializable{
+	
+	private static final long serialVersionUID = -725442393747788565L;
 	
 	@GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -38,6 +48,10 @@ public class Product {
     private int unitInStock;
     @Transient
     private MultipartFile productImage;
+    
+    @OneToMany(mappedBy="product", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JsonIgnore
+    private List<CartItem> cartItems;
 
     public MultipartFile getProductImage() {
 		return productImage;

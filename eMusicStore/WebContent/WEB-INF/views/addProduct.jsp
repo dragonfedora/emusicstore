@@ -1,10 +1,6 @@
 <%@taglib prefix="spring-form"
 	uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@include file="/WEB-INF/views/template/header.jsp"%>
-
-<div class="container-wrapper">
-	<div class="container">
 		<div class="page-header">
 			<h1>Add Product Page</h1>
 			<p class="lead">Please add product information here</p>
@@ -12,9 +8,10 @@
 		<spring-form:form
 			action="${pageContext.request.contextPath}/admin/productInventory/addProduct"
 			method="post" commandName="product" enctype="multipart/form-data">
+			<spring-form:hidden path="productId" value="${product.productId}"/>
 			<div class="form-group">
 				<label for="name">Name</label>
-				<spring-form:input path="productName" id="name" class="form-control" />
+				<spring-form:input path="productName" id="name" class="form-control" value="${product.productName}"/>
 			</div>
 
 			<div class="form-group">
@@ -84,9 +81,6 @@
 
 
 		</spring-form:form>
-		<%@include file="/WEB-INF/views/template/footer.jsp"%>
-	</div>
-</div>
 <script type="text/javascript">
 	$(".form-group").css("width","40%");
 </script>

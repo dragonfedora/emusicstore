@@ -2,6 +2,8 @@ package com.emusic.spring.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -60,45 +62,7 @@ public class HomeController {
         return "details";
     }
     
-    @RequestMapping("/admin")
-    public String viewAdminPage(){
-        return "admin";
-    }
     
-    @RequestMapping("/admin/productInventory")
-    public String viewInventory(Model model){
-    	List<Product> productList = productDAO.getProductList();
-    	model.addAttribute("productList", productList);
-    	return "productInventory";
-    }
-    @RequestMapping("/admin/productInventory/addProduct")
-    public String addProduct(Model model, Product product){
-    	return "addProduct";
-    }
-    
-    @RequestMapping(value="/admin/productInventory/addProduct", method=RequestMethod.POST)
-    public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request){
-    	productDAO.addProduct(product);
-    	MultipartFile productImage = product.getProductImage();
-    	String rootPath = System.getProperty("user.home");
-    	Path path = Paths.get(rootPath + "\\git\\emusicstore\\eMusicStore\\WebContent\\WEB-INF\\resources\\images\\" + product.getProductId() + ".png");
-    	if( productImage != null && !productImage.isEmpty()){
-    		
-    		try {
-				productImage.transferTo(new File(path.toString()));
-			} catch (IllegalStateException | IOException e) {
-				throw new RuntimeException("Product image saving failed");
-			}
-    	}
-    	
-    	return "redirect:/admin/productInventory";
-    }
-    
-    @RequestMapping(value="/admin/productInventory/deleteProduct/{productId}")
-    public String deleteProduct( @PathVariable("productId") String productId ){
-    	productDAO.deletePrductById(productId);
-    	return "redirect:/admin/productInventory";
-    }
 }
 
 
